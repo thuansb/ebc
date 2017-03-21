@@ -13,11 +13,11 @@ class App extends Component {
           <h2>Responsive Table</h2>
         </div>
         <div>
-          <h3>Demo #1</h3>
+          <h2>Demo #1</h2>
           <ResponsiveTable>
             <THead>
               <Tr>
-                <Th>ID</Th>
+                <Th style={{width: '10%'}}>ID</Th>
                 <Th>Date</Th>
                 <Th>Time</Th>
                 <Th>Service</Th>
@@ -44,6 +44,64 @@ class App extends Component {
               }
             </TBody>
           </ResponsiveTable>
+
+
+
+          { /* -------------------- DEMO 2: more than 12 cols ----------------- */}
+
+
+
+          <h2>Demo #2</h2>
+          <div className="App-demo-2">
+            <ResponsiveTable>
+              <THead>
+                <Tr>
+                  <Th>ID</Th>
+                  <Th>Date</Th>
+                  <Th>Time</Th>
+                  <Th>Service</Th>
+                  <Th>Price</Th>
+                  <Th>Status</Th>
+                  <Th>status</Th>
+                  <Th>status</Th>
+                  <Th>status</Th>
+                  <Th>status</Th>
+                  <Th>status</Th>
+                  <Th>status</Th>
+                  <Th>status</Th>
+                  <Th>status</Th>
+                  <Th>status</Th>
+                  <Th>Action(s)</Th>
+                </Tr>
+              </THead>
+              <TBody>
+                {
+                  demoData.map(record => (
+                    <Tr key={record.id}>
+                      <Td>{record.id}</Td>
+                      <Td>{record.date}</Td>
+                      <Td>{record.time}</Td>
+                      <Td>{record.service}</Td>
+                      <Td>{record.price}</Td>
+                      <Td>{record.status}</Td>
+                      <Td>{record.status}</Td>
+                      <Td>{record.status}</Td>
+                      <Td>{record.status}</Td>
+                      <Td>{record.status}</Td>
+                      <Td>{record.status}</Td>
+                      <Td>{record.status}</Td>
+                      <Td>{record.status}</Td>
+                      <Td>{record.status}</Td>
+                      <Td>{record.status}</Td>
+                      <Td>
+                        <button>View</button> <button>Feedback</button>
+                      </Td>
+                    </Tr>
+                  ))
+                }
+              </TBody>
+            </ResponsiveTable>
+          </div>
         </div>
       </div>
     );
