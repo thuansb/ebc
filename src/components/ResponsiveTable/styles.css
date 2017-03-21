@@ -1,0 +1,61 @@
+/* table styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+tr:nth-of-type(odd) {
+  background: #EEE;
+}
+th {
+  background: #333;
+  color: #FFF;
+  font-weight: bold;
+}
+td, th {
+  padding: 6px;
+  border: 1px solid #EEE;
+  text-align: left;
+}
+
+td span.col-title {
+  display: none;
+}
+
+@media
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+	/* Force table to not be like tables anymore */
+	table, thead, tbody, th, td, tr {
+		display: block;
+	}
+
+	/* Hide table headers (but not display: none;, for accessibility) */
+	thead tr {
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+
+	tr { border: 1px solid #CCC; }
+
+  /* turn to a row */
+	td {
+		border: none;
+		border-bottom: 1px solid #EEE;
+		position: relative;
+		padding-left: 50%;
+	}
+
+  /* table mobile header */
+	td span.col-title {
+    display: inline;
+		position: absolute;
+		top: 6px;
+		left: 6px;
+		width: 45%;
+		padding-right: 10px;
+		white-space: nowrap;
+	}
+}
