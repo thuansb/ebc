@@ -7,13 +7,15 @@ table {
 tr:nth-of-type(odd) {
   background: #EEE;
 }
+
 th {
   background: #333;
   color: #FFF;
   font-weight: bold;
 }
+
 td, th {
-  padding: 6px;
+  padding: 10px;
   border: 1px solid #EEE;
   text-align: left;
 }
