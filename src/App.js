@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import ResponsiveTable, { THead, TBody, Tr, Td, Th } from './components/ResponsiveTable';
-import demoData from './data';
+import ResponsiveTable, { Row, HeaderRow, Cell } from './components/ResponsiveTable';
+import demoData, { generate } from './data';
 import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
   render() {
+    const testData = generate(10);
     return (
       <div className="App">
         <div className="App-header">
@@ -13,95 +14,32 @@ class App extends Component {
           <h2>Responsive Table</h2>
         </div>
         <div>
-          <h2>Demo #1</h2>
-          <ResponsiveTable>
-            <THead>
-              <Tr>
-                <Th style={{width: '10%'}}>ID</Th>
-                <Th>Date</Th>
-                <Th>Time</Th>
-                <Th>Service</Th>
-                <Th>Price</Th>
-                <Th>Status</Th>
-                <Th>Action(s)</Th>
-              </Tr>
-            </THead>
-            <TBody>
-              {
-                demoData.map(record => (
-                  <Tr key={record.id}>
-                    <Td>{record.id}</Td>
-                    <Td>{record.date}</Td>
-                    <Td>{record.time}</Td>
-                    <Td>{record.service}</Td>
-                    <Td>{record.price}</Td>
-                    <Td>{record.status}</Td>
-                    <Td>
-                      <button>View</button> <button>Feedback</button>
-                    </Td>
-                  </Tr>
-                ))
-              }
-            </TBody>
-          </ResponsiveTable>
-
-
-
-          { /* -------------------- DEMO 2: more than 12 cols ----------------- */}
-
-
-
           <h2>Demo #2</h2>
-          <div className="App-demo-2">
-            <ResponsiveTable>
-              <THead>
-                <Tr>
-                  <Th>ID</Th>
-                  <Th>Date</Th>
-                  <Th>Time</Th>
-                  <Th>Service</Th>
-                  <Th>Price</Th>
-                  <Th>Status</Th>
-                  <Th>status</Th>
-                  <Th>status</Th>
-                  <Th>status</Th>
-                  <Th>status</Th>
-                  <Th>status</Th>
-                  <Th>status</Th>
-                  <Th>status</Th>
-                  <Th>status</Th>
-                  <Th>status</Th>
-                  <Th>Action(s)</Th>
-                </Tr>
-              </THead>
-              <TBody>
-                {
-                  demoData.map(record => (
-                    <Tr key={record.id}>
-                      <Td>{record.id}</Td>
-                      <Td>{record.date}</Td>
-                      <Td>{record.time}</Td>
-                      <Td>{record.service}</Td>
-                      <Td>{record.price}</Td>
-                      <Td>{record.status}</Td>
-                      <Td>{record.status}</Td>
-                      <Td>{record.status}</Td>
-                      <Td>{record.status}</Td>
-                      <Td>{record.status}</Td>
-                      <Td>{record.status}</Td>
-                      <Td>{record.status}</Td>
-                      <Td>{record.status}</Td>
-                      <Td>{record.status}</Td>
-                      <Td>{record.status}</Td>
-                      <Td>
-                        <button>View</button> <button>Feedback</button>
-                      </Td>
-                    </Tr>
-                  ))
-                }
-              </TBody>
-            </ResponsiveTable>
-          </div>
+          <ResponsiveTable>
+            <HeaderRow>
+              <Cell>ID</Cell>
+              <Cell>Date</Cell>
+              <Cell>Time</Cell>
+              <Cell>Service</Cell>
+              <Cell>Price</Cell>
+              <Cell>Status</Cell>
+              <Cell>Actions</Cell>
+            </HeaderRow>
+            {testData.map(rowData => (
+              <Row>
+                <Cell>{rowData.id}</Cell>
+                <Cell>{rowData.date}</Cell>
+                <Cell>{rowData.time}</Cell>
+                <Cell>{rowData.service}</Cell>
+                <Cell>{rowData.price}</Cell>
+                <Cell>{rowData.status}</Cell>
+                <Cell>
+                  <button>View</button>
+                  <button>Feedback</button>
+                </Cell>
+              </Row>
+            ))}
+          </ResponsiveTable>
         </div>
       </div>
     );

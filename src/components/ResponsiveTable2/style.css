@@ -10,7 +10,7 @@
 .Table-header {
   display: none;
 }
-@media (min-width: 760px) {
+@media (min-width: 500px) {
   .Table-header {
     font-weight: 700;
     background-color: #F2F2F2;
@@ -25,7 +25,7 @@
 .Table-row:nth-of-type(odd) {
   background-color: #F2F2F2;
 }
-@media (min-width: 760px) {
+@media (min-width: 500px) {
   .Table-row {
     display: flex;
     flex-flow: row nowrap;
@@ -50,7 +50,7 @@
   width: 30%;
   font-weight: 700;
 }
-@media (min-width: 760px) {
+@media (min-width: 500px) {
   .Table-row-item {
     border: 1px solid #F2F2F2;
     padding: 0.5em;

@@ -1,30 +1,28 @@
 import React from 'react';
-import THead from './THead';
-import TBody from './TBody';
-import Tr from './Tr';
-import Td from './Td';
-import Th from './Th';
+
+import Row from './Row';
+import HeaderRow from './HeaderRow';
+import Cell from './Cell';
 import './styles.css';
 
 function ResponsiveTable({ children, ...props }) {
 
-  // Get Th array if exist
-  const thead = children.find(component => component.type === THead);
-  const tr = thead && React.Children.only(thead.props.children);
-  const thArray = (tr && React.Children.map(tr.props.children, (th) => th.props.children)) || [];
-
+  // Get headers array if exist
+  const headerRow = children.find(component => component.type === HeaderRow);
+  const headers = (headerRow && React.Children.map(headerRow.props.children, (cell) => cell.props.children)) || [];
+  console.log(headers);
   return (
-    <table {...props}>
+    <div className="Table" {...props}>
       {
         React.Children.map(
           children,
-          e => e.type === TBody ? React.cloneElement(e, { thArray }) : e
+          e => e.type === Row ? React.cloneElement(e, { headers }) : e
         )
       }
-    </table>
+    </div>
   )
 }
 
 export default ResponsiveTable;
 
-export { THead, TBody, Tr, Th, Td };
+export { HeaderRow, Row, Cell };
