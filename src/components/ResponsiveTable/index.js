@@ -16,18 +16,20 @@ function ResponsiveTable({
   // Get headers array if exist
   const headerRow = children.find(component => component.type === HeaderRow);
   const headers = (headerRow && React.Children.map(headerRow.props.children, (cell) => cell.props.children)) || [];
-  
+
   // Prepare data
   const rows = children[1];
 
   // If there are more items to be loaded then add an extra row to hold a loading indicator.
-  const rowCount = hasNextPage ? rows.length + 1 : rows.length
+  const rowCount = hasNextPage ? rows.length : rows.length
 
   // Only load 1 page of items at a time.
   const loadMoreRows = isNextPageLoading ? () => {} : loadNextPage
 
   // Every row is loaded except for our loading indicator row.
-  const isRowLoaded = ({ index }) => !hasNextPage || index < rows.length
+  const isRowLoaded = ({ index }) => !hasNextPage || index + 1 < rows.length
+
+  console.log(rowCount, rows.length);
 
   const rowRenderer = ({
     key,
@@ -36,8 +38,9 @@ function ResponsiveTable({
     isVisible,
     style
   }) => {
+    console.log(index, isRowLoaded({index}));
     if (!isRowLoaded({ index })) {
-      return (<div key={key} style={style}>loading</div>); //(<Row key={key} style={style}>Loading...</Row>)
+      return (<div key={key} style={style} className="Table-row">Loading...</div>);
     } else {
       if (rows[index].type === Row) {
         return React.cloneElement(rows[index], { headers, key, style });

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ResponsiveTable, { Row, HeaderRow, Cell } from './components/ResponsiveTable';
 import { generate } from './data';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
@@ -9,12 +8,12 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pageIndex: 0,
+      pageIndex: 1,
       isNextPageLoading: false,
-      loadedRows: generate(1),
+      loadedRows: generate(2),
     }
 
-    this.noPages = 1;
+    this.noPages = 3;
 
     this.loadNextPage = this.loadNextPage.bind(this);
   }
@@ -27,7 +26,7 @@ class App extends Component {
 
       this.timeoutID = setTimeout(() => {
         // load more 10 records each time
-        const loadedRows = this.state.loadedRows.concat(generate(10))
+        const loadedRows = this.state.loadedRows.concat(generate(1000))
         this.setState({
           loadedRows,
           isNextPageLoading: false,
@@ -44,7 +43,7 @@ class App extends Component {
         <h2>Responsive Table Demo #1</h2>
         <ResponsiveTable
           loadNextPage={this.loadNextPage}
-          hasNextPage={this.state.pageIndex < this.noPages}
+          hasNextPage={this.state.pageIndex <= this.noPages}
           isNextPageLoading={this.state.isNextPageLoading}
           threshold={25} //Threshold at which to pre-fetch data
           >
