@@ -9,7 +9,7 @@ import './styles.css';
 
 function ResponsiveTable({
   children, rowHeight, tableHeight, breakPoint,
-  hasNextPage, isNextPageLoading, list, loadNextPage,
+  hasNextPage, isNextPageLoading, loadNextPage,
   ...props
 }) {
 
@@ -19,20 +19,14 @@ function ResponsiveTable({
   // Prepare data
   const rows = children[1];
 
-  // // If there are more items to be loaded then add an extra row to hold a loading indicator.
-  // const rowCount = hasNextPage
-  // ? list.size + 1
-  // : list.size
-  //
-  // // Only load 1 page of items at a time.
-  // // Pass an empty callback to InfiniteLoader in case it asks us to load more than once.
-  // const loadMoreRows = isNextPageLoading
-  // ? () => {}
-  // : loadNextPage
-  //
-  // // Every row is loaded except for our loading indicator row.
-  // const isRowLoaded = ({ index }) => !hasNextPage || index < list.size
+  // If there are more items to be loaded then add an extra row to hold a loading indicator.
+  const rowCount = hasNextPage ? rows.length + 1 : rows.length
 
+  // Only load 1 page of items at a time.
+  const loadMoreRows = isNextPageLoading ? () => {} : loadNextPage
+
+  // Every row is loaded except for our loading indicator row.
+  const isRowLoaded = ({ index }) => !hasNextPage || index < rows.length
 
   const rowRenderer = ({
     key,
@@ -41,10 +35,12 @@ function ResponsiveTable({
     isVisible,
     style
   }) => {
-    if (rows[index].type === Row) {
-      return React.cloneElement(rows[index], { headers, key, style });
+    if (!isRowLoaded({ index })) {
+      return (<div key={key} style={style}>loading</div>); //(<Row key={key} style={style}>Loading...</Row>)
     } else {
-      return React.cloneElement(rows[index], { key, style });
+      if (rows[index].type === Row) {
+        return React.cloneElement(rows[index], { headers, key, style });
+      }
     }
   }
 
@@ -52,20 +48,32 @@ function ResponsiveTable({
   return (
     <div className="Table">
       {headerRow}
-      <AutoSizer disableHeight>
+      <InfiniteLoader
+        isRowLoaded={isRowLoaded}
+        loadMoreRows={loadMoreRows}
+        rowCount={rowCount}
+        >
         {
-          ({ width }) => (
-            <List
-              rowCount={rows.length}
-              rowHeight={width < breakPoint ? (rowHeight - 10) * headers.length : rowHeight}
-              rowRenderer={rowRenderer}
-              height={tableHeight}
-              width={width}
-              {...props}
-              />
+          ({ onRowsRendered, registerChild }) => (
+            <AutoSizer disableHeight>
+              {
+                ({ width }) => (
+                  <List
+                    ref={registerChild}
+                    onRowsRendered={onRowsRendered}
+                    rowCount={rows.length}
+                    rowHeight={width < breakPoint ? (rowHeight - 10) * headers.length : rowHeight}
+                    rowRenderer={rowRenderer}
+                    height={tableHeight}
+                    width={width}
+                    {...props}
+                    />
+                )
+              }
+            </AutoSizer>
           )
         }
-      </AutoSizer>
+      </InfiniteLoader>
     </div>
   )
 }
