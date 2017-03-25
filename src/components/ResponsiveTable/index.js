@@ -62,7 +62,7 @@ function ResponsiveTable({
                     ref={registerChild}
                     onRowsRendered={onRowsRendered}
                     rowCount={rows.length}
-                    rowHeight={width < breakPoint ? (rowHeight - 10) * headers.length : rowHeight}
+                    rowHeight={width < breakPoint ? (rowHeight - 20) * headers.length : rowHeight}
                     rowRenderer={rowRenderer}
                     height={tableHeight}
                     width={width}
@@ -86,8 +86,8 @@ ResponsiveTable.propTypes = {
 }
 
 ResponsiveTable.defaultProps = {
-  rowHeight: 50,
-  tableHeight: 680,
+  rowHeight: 65,
+  tableHeight: 550,
   breakPoint: 760,
 }
 
