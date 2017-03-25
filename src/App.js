@@ -10,16 +10,21 @@ class App extends Component {
     this.state = {
       pageIndex: 1,
       isNextPageLoading: false,
-      loadedRows: generate(2),
+      loadedRows: [],
     }
 
-    this.noPages = 3;
+    this.noPages = 300;
 
     this.loadNextPage = this.loadNextPage.bind(this);
   }
 
+  componentWillMount() {
+    // load init page
+    this.loadNextPage();
+  }
+
   // API call simulate
-  loadNextPage({ startIndex, stopIndex }) {
+  loadNextPage() {
     return new Promise((resolve, reject) => {
       // start loading
       this.setState({ isNextPageLoading: true });

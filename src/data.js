@@ -9,7 +9,7 @@ export function generate(n) {
       id: increasingID,
       date: 'Feb 1, 2017',
       time: 'Evening',
-      service: 'Doctor House xxxxxss ssss Call (2hrs)',
+      service: 'Doctor House Call abcdxy (2hrs)',
       price: 'SGD 250.00',
       status: 'Expired',
     });

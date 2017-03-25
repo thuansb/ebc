@@ -56,3 +56,12 @@
     content: none;
   }
 }
+
+.Table-loading-indicator {
+  font-weight: bold;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
