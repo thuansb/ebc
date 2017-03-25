@@ -6,7 +6,7 @@ import './App.css';
 
 class App extends Component {
   render() {
-    const testData = generate(10);
+    const testData = generate(50000);
     return (
       <div className="App">
         <div className="App-header">
@@ -26,7 +26,7 @@ class App extends Component {
               <Cell>Actions</Cell>
             </HeaderRow>
             {testData.map(rowData => (
-              <Row>
+              <Row key={rowData.id}>
                 <Cell>{rowData.id}</Cell>
                 <Cell>{rowData.date}</Cell>
                 <Cell>{rowData.time}</Cell>
