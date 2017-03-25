@@ -50,7 +50,8 @@ class App extends Component {
           loadNextPage={this.loadNextPage}
           hasNextPage={this.state.pageIndex <= this.noPages}
           isNextPageLoading={this.state.isNextPageLoading}
-          threshold={25} //Threshold at which to pre-fetch data
+          threshold={25} // Threshold at which to pre-fetch data
+          breakPoint={760} // Switch mobile - desktop view
           >
           <HeaderRow>
             <Cell>ID</Cell>
