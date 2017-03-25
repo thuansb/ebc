@@ -31,7 +31,7 @@ class App extends Component {
           loadedRows,
           isNextPageLoading: false,
           pageIndex: this.state.pageIndex + 1,
-        }, resolve);
+        }, resolve); // resolve once component did update
       }, 500 + Math.round(Math.random(500)));
     })
 
@@ -46,6 +46,7 @@ class App extends Component {
           hasNextPage={this.state.pageIndex <= this.noPages}
           isNextPageLoading={this.state.isNextPageLoading}
           threshold={25} //Threshold at which to pre-fetch data
+          useCellMeasurer={true}
           >
           <HeaderRow>
             <Cell>ID</Cell>
