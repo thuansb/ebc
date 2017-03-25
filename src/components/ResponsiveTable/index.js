@@ -16,6 +16,7 @@ function ResponsiveTable({
   // Get headers array if exist
   const headerRow = children.find(component => component.type === HeaderRow);
   const headers = (headerRow && React.Children.map(headerRow.props.children, (cell) => cell.props.children)) || [];
+  
   // Prepare data
   const rows = children[1];
 
@@ -83,12 +84,14 @@ ResponsiveTable.propTypes = {
   rowHeight: PropTypes.number.isRequired,
   tableHeight: PropTypes.number.isRequired,
   breakPoint: PropTypes.number.isRequired,
+  threshold: PropTypes.number,
 }
 
 ResponsiveTable.defaultProps = {
   rowHeight: 65,
   tableHeight: 550,
   breakPoint: 760,
+  threshold: 15,
 }
 
 export default ResponsiveTable;

@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
 
-function Cell({ header, children, ...props }) {
+function Cell({ header, children, flex = 1, ...props }) {
   return (
-    <div className="Table-row-item" {...props}>
+    <div className="Table-row-item" {...props} style={{ flex: flex }}>
       {children}
     </div>
   );

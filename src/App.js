@@ -46,12 +46,13 @@ class App extends Component {
           loadNextPage={this.loadNextPage}
           hasNextPage={this.state.pageIndex < this.noPages}
           isNextPageLoading={this.state.isNextPageLoading}
+          threshold={25} //Threshold at which to pre-fetch data
           >
           <HeaderRow>
             <Cell>ID</Cell>
             <Cell>Date</Cell>
             <Cell>Time</Cell>
-            <Cell>Service</Cell>
+            <Cell flex={2}>Service</Cell>
             <Cell>Price</Cell>
             <Cell>Status</Cell>
             <Cell>Actions</Cell>
@@ -61,7 +62,7 @@ class App extends Component {
               <Cell>{rowData.id}</Cell>
               <Cell>{rowData.date}</Cell>
               <Cell>{rowData.time}</Cell>
-              <Cell>{rowData.service}</Cell>
+              <Cell flex={2}>{rowData.service}</Cell>
               <Cell>{rowData.price}</Cell>
               <Cell>{rowData.status}</Cell>
               <Cell>
