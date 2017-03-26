@@ -13,7 +13,7 @@ class App extends Component {
       loadedRows: [],
     }
 
-    this.noPages = 300;
+    this.noPages = 100;
 
     this.loadNextPage = this.loadNextPage.bind(this);
   }
@@ -30,8 +30,8 @@ class App extends Component {
       this.setState({ isNextPageLoading: true });
 
       this.timeoutID = setTimeout(() => {
-        // load more 10 records each time
-        const loadedRows = this.state.loadedRows.concat(generate(1000))
+        // load more 100 records each time
+        const loadedRows = this.state.loadedRows.concat(generate(100))
         this.setState({
           loadedRows,
           isNextPageLoading: false,
